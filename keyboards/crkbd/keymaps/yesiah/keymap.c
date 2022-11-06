@@ -86,6 +86,60 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+// LED numbering
+//   number: number on the build guide, 1-index
+//   id: used in code, 0-index
+// lhs id = number - 1
+// rhs id = number + 26
+// num leds between ids = to - from + 1
+const rgblight_segment_t PROGMEM my_base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 13, HSV_OFF}, {13, 1, HSV_MAGENTA}, {14, 26, HSV_OFF},
+    {40, 1, HSV_YELLOW}, {41, 13, HSV_OFF});
+
+// Num layer
+const rgblight_segment_t PROGMEM my_num_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    // Delete: LHS 26 white
+    {25, 1, HSV_WHITE},
+    // RHS 8~10 yellow
+    {34, 3, HSV_YELLOW},
+    // RHS 11~14, 16~21 magenta
+    {37, 4, HSV_MAGENTA}, {42, 6, HSV_MAGENTA},
+    // RHS 22~24 yellow
+    {48, 3, HSV_YELLOW});
+
+// Light LEDs 11 & 12 in purple when keyboard layer 2 is active
+const rgblight_segment_t PROGMEM my_layer2_layer[] =
+    RGBLIGHT_LAYER_SEGMENTS({11, 2, HSV_PURPLE});
+
+// Light LEDs 13 & 14 in green when keyboard layer 3 is active
+const rgblight_segment_t PROGMEM my_layer3_layer[] =
+    RGBLIGHT_LAYER_SEGMENTS({13, 2, HSV_GREEN});
+
+// Now define the array of layers. Later layers take precedence
+const rgblight_segment_t *const PROGMEM my_rgb_layers[] =
+    RGBLIGHT_LAYERS_LIST(my_base_layer,
+                         my_num_layer,
+                         my_layer2_layer,  // Overrides other layers
+                         my_layer3_layer   // Overrides other layers
+    );
+
+void keyboard_post_init_user(void) {
+  // Enable the LED layers
+  rgblight_layers = my_rgb_layers;
+}
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+  rgblight_set_layer_state(BASE, layer_state_cmp(state, BASE));
+  return state;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+  rgblight_set_layer_state(NUM, layer_state_cmp(state, NUM));
+  rgblight_set_layer_state(SYM, layer_state_cmp(state, SYM));
+  rgblight_set_layer_state(NAV, layer_state_cmp(state, NAV));
+  return state;
+}
+
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   if (!is_keyboard_master()) {

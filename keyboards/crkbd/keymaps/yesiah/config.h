@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#define RGBLIGHT_LAYERS
+
 //#define USE_MATRIX_I2C
 
 /* Select hand configuration */
