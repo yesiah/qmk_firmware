@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #define RGBLIGHT_LAYERS
+#define IGNORE_MOD_TAP_INTERRUPT
 
 //#define USE_MATRIX_I2C
 
@@ -31,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define EE_HANDS
 
 //#define TAPPING_FORCE_HOLD
-//#define TAPPING_TERM 100
+#define TAPPING_TERM 120
 
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_BREATHING
