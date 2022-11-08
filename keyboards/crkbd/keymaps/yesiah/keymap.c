@@ -85,27 +85,121 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 void render_base_layer_led(uint8_t led_min, uint8_t led_max) {
+  // {0, 13, HSV_OFF},
+  // {14, 26, HSV_OFF},
+  // {41, 13, HSV_OFF});
   for (uint8_t i = led_min; i <= led_max; i++) {
     rgb_matrix_set_color(i, RGB_OFF);
   }
+
+  // {13, 1, HSV_MAGENTA},
+  rgb_matrix_set_color(13, RGB_MAGENTA);
+
+  // {40, 1, HSV_YELLOW},
+  rgb_matrix_set_color(40, RGB_YELLOW);
 }
 
 void render_num_layer_led(uint8_t led_min, uint8_t led_max) {
   for (uint8_t i = led_min; i <= led_max; i++) {
-    rgb_matrix_set_color(i, RGB_RED);
+    rgb_matrix_set_color(i, RGB_OFF);
+  }
+
+  // Delete: LHS 26 white
+  // {25, 1, HSV_WHITE},
+  rgb_matrix_set_color(25, RGB_WHITE);
+
+  // Numpad: RHS 11~14, 16~21 magenta
+  // {37, 4, HSV_MAGENTA}, {42, 6, HSV_MAGENTA},
+  for (uint8_t i = 37; i <= 40; i++) {
+    rgb_matrix_set_color(i, RGB_MAGENTA);
+  }
+  for (uint8_t i = 42; i <= 47; i++) {
+    rgb_matrix_set_color(i, RGB_MAGENTA);
+  }
+
+  // Numpad symbols: RHS 8~10, 22~24 yellow
+  // {34, 3, HSV_YELLOW}, {48, 3, HSV_YELLOW});
+  for (uint8_t i = 34; i <= 36; i++) {
+    rgb_matrix_set_color(i, RGB_YELLOW);
+  }
+  for (uint8_t i = 48; i <= 50; i++) {
+    rgb_matrix_set_color(i, RGB_YELLOW);
   }
 }
 
 void render_sym_layer_led(uint8_t led_min, uint8_t led_max) {
   for (uint8_t i = led_min; i <= led_max; i++) {
-    rgb_matrix_set_color(i, RGB_GREEN);
+    rgb_matrix_set_color(i, RGB_OFF);
+  }
+
+  // Number row: LHS 10~11, 18~19, 24 Yellow
+  //             RHS 10~11, 18~19, 24 Yellow
+  // {9, 2, HSV_YELLOW}, {17, 2, HSV_YELLOW}, {23, 1, HSV_YELLOW},
+  // {36, 2, HSV_YELLOW}, {44, 2, HSV_YELLOW}, {50, 1, HSV_YELLOW},
+  rgb_matrix_set_color(9, RGB_YELLOW);
+  rgb_matrix_set_color(10, RGB_YELLOW);
+  rgb_matrix_set_color(17, RGB_YELLOW);
+  rgb_matrix_set_color(18, RGB_YELLOW);
+  rgb_matrix_set_color(23, RGB_YELLOW);
+  rgb_matrix_set_color(36, RGB_YELLOW);
+  rgb_matrix_set_color(37, RGB_YELLOW);
+  rgb_matrix_set_color(44, RGB_YELLOW);
+  rgb_matrix_set_color(45, RGB_YELLOW);
+  rgb_matrix_set_color(50, RGB_YELLOW);
+
+  // Backtick, minus, equal: LHS 13, 16, 21 cyan
+  // {12, 1, HSV_CYAN}, {15, 1, HSV_CYAN}, {20, 1, HSV_CYAN},
+  rgb_matrix_set_color(12, RGB_CYAN);
+  rgb_matrix_set_color(15, RGB_CYAN);
+  rgb_matrix_set_color(20, RGB_CYAN);
+
+  // Symbols: LHS 9, 12, 17, 20, 23 Orange
+  //          RHS 9 12 17 Orange
+  // {8, 1, HSV_ORANGE}, {11, 1, HSV_ORANGE}, {16, 1, HSV_ORANGE},
+  // {19, 1, HSV_ORANGE}, {22, 1, HSV_ORANGE}, {35, 1, HSV_ORANGE},
+  // {38, 1, HSV_ORANGE}, {43, 1, HSV_ORANGE},
+  rgb_matrix_set_color(8, RGB_ORANGE);
+  rgb_matrix_set_color(11, RGB_ORANGE);
+  rgb_matrix_set_color(16, RGB_ORANGE);
+  rgb_matrix_set_color(19, RGB_ORANGE);
+  rgb_matrix_set_color(22, RGB_ORANGE);
+  rgb_matrix_set_color(35, RGB_ORANGE);
+  rgb_matrix_set_color(38, RGB_ORANGE);
+  rgb_matrix_set_color(43, RGB_ORANGE);
+
+  // Brackets: RHS 13 16 20 21 22 23 Magenta
+  // {39, 1, HSV_MAGENTA}, {42, 1, HSV_MAGENTA}, {46, 4, HSV_MAGENTA});
+  rgb_matrix_set_color(39, RGB_MAGENTA);
+  rgb_matrix_set_color(42, RGB_MAGENTA);
+  for (uint8_t i = 46; i <= 49; i++) {
+    rgb_matrix_set_color(i, RGB_MAGENTA);
   }
 }
 
 void render_nav_layer_led(uint8_t led_min, uint8_t led_max) {
   for (uint8_t i = led_min; i <= led_max; i++) {
-    rgb_matrix_set_color(i, RGB_BLUE);
+    rgb_matrix_set_color(i, RGB_OFF);
   }
+
+  // Nav: RHS 9~10, 23~24 magenta
+  // {35, 2, HSV_MAGENTA}, {49, 2, HSV_MAGENTA},
+  rgb_matrix_set_color(35, RGB_MAGENTA);
+  rgb_matrix_set_color(36, RGB_MAGENTA);
+  rgb_matrix_set_color(49, RGB_MAGENTA);
+  rgb_matrix_set_color(50, RGB_MAGENTA);
+
+  // Arrow keys: RHS 12, 17~18, 20 yellow
+  // {38, 1, HSV_YELLOW}, {43, 2, HSV_YELLOW}, {46, 1, HSV_YELLOW},
+  rgb_matrix_set_color(38, RGB_YELLOW);
+  rgb_matrix_set_color(43, RGB_YELLOW);
+  rgb_matrix_set_color(44, RGB_YELLOW);
+  rgb_matrix_set_color(46, RGB_YELLOW);
+
+  // Volume control: RHS 13, 16, 21 cyan
+  // {39, 1, HSV_CYAN}, {42, 1, HSV_CYAN}, {47, 1, HSV_CYAN});
+  rgb_matrix_set_color(39, RGB_CYAN);
+  rgb_matrix_set_color(42, RGB_CYAN);
+  rgb_matrix_set_color(47, RGB_CYAN);
 }
 
 void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
