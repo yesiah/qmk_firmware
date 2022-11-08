@@ -84,6 +84,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
+// Per key, per layer RGBs
+//
+// LED indexing
+//   number: number on the build guide, 1-index
+//   id: used in code, 0-index
+// lhs id = number - 1
+// rhs id = number + 26
+// num leds between ids = to - from + 1
 void led_off(uint8_t led_min, uint8_t led_max) {
   for (uint8_t i = led_min; i <= led_max; i++) {
     rgb_matrix_set_color(i, RGB_OFF);
@@ -191,72 +199,6 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
       break;
   }
 }
-
-// Per key, per layer RGBs
-//
-// LED indexing
-//   number: number on the build guide, 1-index
-//   id: used in code, 0-index
-// lhs id = number - 1
-// rhs id = number + 26
-// num leds between ids = to - from + 1
-// const rgblight_segment_t PROGMEM my_base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-//     {0, 13, HSV_OFF}, {13, 1, HSV_MAGENTA}, {14, 26, HSV_OFF},
-//     {40, 1, HSV_YELLOW}, {41, 13, HSV_OFF});
-
-// Num layer
-// const rgblight_segment_t PROGMEM my_num_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-//     // Delete: LHS 26 white
-//     {25, 1, HSV_WHITE},
-//     // Numpad: RHS 11~14, 16~21 magenta
-//     {37, 4, HSV_MAGENTA}, {42, 6, HSV_MAGENTA},
-//     // Numpad symbols: RHS 8~10, 22~24 yellow
-//     {34, 3, HSV_YELLOW}, {48, 3, HSV_YELLOW});
-
-// const rgblight_segment_t PROGMEM my_sym_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-//     // Number row: LHS 10~11, 18~19, 24 Yellow
-//     //             RHS 10~11, 18~19, 24 Yellow
-//     {9, 2, HSV_YELLOW}, {17, 2, HSV_YELLOW}, {23, 1, HSV_YELLOW},
-//     {36, 2, HSV_YELLOW}, {44, 2, HSV_YELLOW}, {50, 1, HSV_YELLOW},
-//     // Backtick, minus, equal: LHS 13, 16, 21 cyan
-//     {12, 1, HSV_CYAN}, {15, 1, HSV_CYAN}, {20, 1, HSV_CYAN},
-//     // Symbols: LHS 9, 12, 17, 20, 23 Orange
-//     //          RHS 9 12 17 Orange
-//     {8, 1, HSV_ORANGE}, {11, 1, HSV_ORANGE}, {16, 1, HSV_ORANGE},
-//     {19, 1, HSV_ORANGE}, {22, 1, HSV_ORANGE}, {35, 1, HSV_ORANGE},
-//     {38, 1, HSV_ORANGE}, {43, 1, HSV_ORANGE},
-//     // Brackets: RHS 13 16 20 21 22 23 Magenta
-//     {39, 1, HSV_MAGENTA}, {42, 1, HSV_MAGENTA}, {46, 4, HSV_MAGENTA});
-
-// const rgblight_segment_t PROGMEM my_nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-//     // Nav: RHS 9~10, 23~24 magenta
-//     {35, 2, HSV_MAGENTA}, {49, 2, HSV_MAGENTA},
-//     // Arrow keys: RHS 12, 17~18, 20 yellow
-//     {38, 1, HSV_YELLOW}, {43, 2, HSV_YELLOW}, {46, 1, HSV_YELLOW},
-//     // Volume control: RHS 13, 16, 21 cyan
-//     {39, 1, HSV_CYAN}, {42, 1, HSV_CYAN}, {47, 1, HSV_CYAN});
-
-// Now define the array of layers. Later layers take precedence
-// const rgblight_segment_t *const PROGMEM my_rgb_layers[] =
-// RGBLIGHT_LAYERS_LIST(
-//     my_base_layer, my_num_layer, my_sym_layer, my_nav_layer);
-
-// void keyboard_post_init_user(void) {
-//   // Enable the LED layers
-//   rgblight_layers = my_rgb_layers;
-// }
-
-// layer_state_t default_layer_state_set_user(layer_state_t state) {
-//   rgblight_set_layer_state(BASE, layer_state_cmp(state, BASE));
-//   return state;
-// }
-
-// layer_state_t layer_state_set_user(layer_state_t state) {
-//   rgblight_set_layer_state(NUM, layer_state_cmp(state, NUM));
-//   rgblight_set_layer_state(SYM, layer_state_cmp(state, SYM));
-//   rgblight_set_layer_state(NAV, layer_state_cmp(state, NAV));
-//   return state;
-// }
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
