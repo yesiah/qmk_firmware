@@ -1,4 +1,4 @@
-# Yesiah
+# yesiah
 
 ## Corne Keyboard (CRKBD) layout
 
