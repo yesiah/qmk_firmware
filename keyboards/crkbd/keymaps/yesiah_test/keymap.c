@@ -31,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 enum layers { BASE, NUM, SYM, NAV };
 
+// clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -81,6 +82,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   )
 };
+// clang-format on
+
+void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+  switch (biton32(layer_state)) {
+    case NUM:
+      for (uint8_t i = led_min; i <= led_max; i++) {
+        rgb_matrix_set_color(i, RGB_RED);
+      }
+      break;
+    case SYM:
+      for (uint8_t i = led_min; i <= led_max; i++) {
+        rgb_matrix_set_color(i, RGB_GREEN);
+      }
+      break;
+    case NAV:
+      for (uint8_t i = led_min; i <= led_max; i++) {
+        rgb_matrix_set_color(i, RGB_BLUE);
+      }
+      break;
+    default:
+      for (uint8_t i = led_min; i <= led_max; i++) {
+        rgb_matrix_set_color(i, RGB_OFF);
+      }
+      break;
+  }
+}
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
