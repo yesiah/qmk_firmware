@@ -20,6 +20,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 #include <stdio.h>
 
+// RGB colors
+#define RGB_CROWSHEAD 0x1A, 0x17, 0x00
+#define RGB_CROW 0x1A, 0x00, 0x18
+#define RGB_SUPER_BLACK 0x1A, 0x0D, 0x00
+#define RGB_KURETAKE_BLACK_MANGA 0x00, 0x16, 0x1A
+#define RGB_NINJA 0x00, 0x08, 0x08
+#define RGB_BLACK_GLAZE 0x00, 0x0D, 0x0D
+#define RGB_STELLAR_EXPLORER 0x00, 0x1A, 0x1A
+
 // Custom macros for shorter key code
 #define LCTLS LCTL_T(KC_S)
 #define LALTD LALT_T(KC_D)
@@ -100,10 +109,10 @@ void led_off(uint8_t led_min, uint8_t led_max) {
 
 void render_base_layer_led(uint8_t led_min, uint8_t led_max) {
   // Num layer key
-  rgb_matrix_set_color(13, RGB_MAGENTA);
+  rgb_matrix_set_color(13, RGB_CROW);
 
   // Sym layer key
-  rgb_matrix_set_color(40, RGB_YELLOW);
+  rgb_matrix_set_color(40, RGB_CROWSHEAD);
 }
 
 void render_num_layer_led(uint8_t led_min, uint8_t led_max) {
@@ -112,74 +121,74 @@ void render_num_layer_led(uint8_t led_min, uint8_t led_max) {
 
   // Numpad
   for (uint8_t i = 37; i <= 40; i++) {
-    rgb_matrix_set_color(i, RGB_MAGENTA);
+    rgb_matrix_set_color(i, RGB_CROW);
   }
   for (uint8_t i = 42; i <= 47; i++) {
-    rgb_matrix_set_color(i, RGB_MAGENTA);
+    rgb_matrix_set_color(i, RGB_CROW);
   }
 
   // Symbols around numpad
   for (uint8_t i = 34; i <= 36; i++) {
-    rgb_matrix_set_color(i, RGB_YELLOW);
+    rgb_matrix_set_color(i, RGB_CROWSHEAD);
   }
   for (uint8_t i = 48; i <= 50; i++) {
-    rgb_matrix_set_color(i, RGB_YELLOW);
+    rgb_matrix_set_color(i, RGB_CROWSHEAD);
   }
 }
 
 void render_sym_layer_led(uint8_t led_min, uint8_t led_max) {
   // Number row
-  rgb_matrix_set_color(9, RGB_YELLOW);
-  rgb_matrix_set_color(10, RGB_YELLOW);
-  rgb_matrix_set_color(17, RGB_YELLOW);
-  rgb_matrix_set_color(18, RGB_YELLOW);
-  rgb_matrix_set_color(23, RGB_YELLOW);
-  rgb_matrix_set_color(36, RGB_YELLOW);
-  rgb_matrix_set_color(37, RGB_YELLOW);
-  rgb_matrix_set_color(44, RGB_YELLOW);
-  rgb_matrix_set_color(45, RGB_YELLOW);
-  rgb_matrix_set_color(50, RGB_YELLOW);
+  rgb_matrix_set_color(9, RGB_CROWSHEAD);
+  rgb_matrix_set_color(10, RGB_CROWSHEAD);
+  rgb_matrix_set_color(17, RGB_CROWSHEAD);
+  rgb_matrix_set_color(18, RGB_CROWSHEAD);
+  rgb_matrix_set_color(23, RGB_CROWSHEAD);
+  rgb_matrix_set_color(36, RGB_CROWSHEAD);
+  rgb_matrix_set_color(37, RGB_CROWSHEAD);
+  rgb_matrix_set_color(44, RGB_CROWSHEAD);
+  rgb_matrix_set_color(45, RGB_CROWSHEAD);
+  rgb_matrix_set_color(50, RGB_CROWSHEAD);
 
   // Backtick, minus, equal
-  rgb_matrix_set_color(12, RGB_CYAN);
-  rgb_matrix_set_color(15, RGB_CYAN);
-  rgb_matrix_set_color(20, RGB_CYAN);
+  rgb_matrix_set_color(12, RGB_KURETAKE_BLACK_MANGA);
+  rgb_matrix_set_color(15, RGB_KURETAKE_BLACK_MANGA);
+  rgb_matrix_set_color(20, RGB_KURETAKE_BLACK_MANGA);
 
   // Symbols
-  rgb_matrix_set_color(8, RGB_ORANGE);
-  rgb_matrix_set_color(11, RGB_ORANGE);
-  rgb_matrix_set_color(16, RGB_ORANGE);
-  rgb_matrix_set_color(19, RGB_ORANGE);
-  rgb_matrix_set_color(22, RGB_ORANGE);
-  rgb_matrix_set_color(35, RGB_ORANGE);
-  rgb_matrix_set_color(38, RGB_ORANGE);
-  rgb_matrix_set_color(43, RGB_ORANGE);
+  rgb_matrix_set_color(8, RGB_SUPER_BLACK);
+  rgb_matrix_set_color(11, RGB_SUPER_BLACK);
+  rgb_matrix_set_color(16, RGB_SUPER_BLACK);
+  rgb_matrix_set_color(19, RGB_SUPER_BLACK);
+  rgb_matrix_set_color(22, RGB_SUPER_BLACK);
+  rgb_matrix_set_color(35, RGB_SUPER_BLACK);
+  rgb_matrix_set_color(38, RGB_SUPER_BLACK);
+  rgb_matrix_set_color(43, RGB_SUPER_BLACK);
 
   // Brackets
-  rgb_matrix_set_color(39, RGB_MAGENTA);
-  rgb_matrix_set_color(42, RGB_MAGENTA);
+  rgb_matrix_set_color(39, RGB_CROW);
+  rgb_matrix_set_color(42, RGB_CROW);
   for (uint8_t i = 46; i <= 49; i++) {
-    rgb_matrix_set_color(i, RGB_MAGENTA);
+    rgb_matrix_set_color(i, RGB_CROW);
   }
 }
 
 void render_nav_layer_led(uint8_t led_min, uint8_t led_max) {
   // Nav
-  rgb_matrix_set_color(35, RGB_MAGENTA);
-  rgb_matrix_set_color(36, RGB_MAGENTA);
-  rgb_matrix_set_color(49, RGB_MAGENTA);
-  rgb_matrix_set_color(50, RGB_MAGENTA);
+  rgb_matrix_set_color(35, RGB_CROW);
+  rgb_matrix_set_color(36, RGB_CROW);
+  rgb_matrix_set_color(49, RGB_CROW);
+  rgb_matrix_set_color(50, RGB_CROW);
 
   // Arrow keys
-  rgb_matrix_set_color(38, RGB_YELLOW);
-  rgb_matrix_set_color(43, RGB_YELLOW);
-  rgb_matrix_set_color(44, RGB_YELLOW);
-  rgb_matrix_set_color(46, RGB_YELLOW);
+  rgb_matrix_set_color(38, RGB_CROWSHEAD);
+  rgb_matrix_set_color(43, RGB_CROWSHEAD);
+  rgb_matrix_set_color(44, RGB_CROWSHEAD);
+  rgb_matrix_set_color(46, RGB_CROWSHEAD);
 
   // Volume control
-  rgb_matrix_set_color(39, RGB_CYAN);
-  rgb_matrix_set_color(42, RGB_CYAN);
-  rgb_matrix_set_color(47, RGB_CYAN);
+  rgb_matrix_set_color(39, RGB_NINJA);
+  rgb_matrix_set_color(42, RGB_BLACK_GLAZE);
+  rgb_matrix_set_color(47, RGB_STELLAR_EXPLORER);
 }
 
 void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
