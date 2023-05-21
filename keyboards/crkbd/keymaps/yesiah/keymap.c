@@ -21,13 +21,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdio.h>
 
 // RGB colors
-#define RGB_CROWSHEAD 0x1A, 0x17, 0x00
+#define RGB_CROWSHEAD 0x1A, 0x17, 0x00  // yellow
 #define RGB_CROW 0x1A, 0x00, 0x18
 #define RGB_SUPER_BLACK 0x1A, 0x0D, 0x00
 #define RGB_KURETAKE_BLACK_MANGA 0x00, 0x16, 0x1A
 #define RGB_NINJA 0x00, 0x08, 0x08
 #define RGB_BLACK_GLAZE 0x00, 0x0D, 0x0D
 #define RGB_STELLAR_EXPLORER 0x00, 0x1A, 0x1A
+#define RGB_CATHODE_GREEN 0x00, 0xFF, 0x5E
 
 // Custom macros for shorter key code
 #define LCTLS LCTL_T(KC_S)
@@ -50,20 +51,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          LGUICAP, NUM_TAB,  KC_SPC,    NAV_ENT, MO(SYM), KC_RALT
+                                          KC_LGUI, MO(NUM),  KC_SPC,    NAV_ENT, MO(SYM),  KC_TAB
                                       //`--------------------------'  `--------------------------'
 
   ),
 
   [NUM] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, _______, _______, _______, _______, _______,                      KC_PSLS,   KC_P7,   KC_P8,   KC_P9, KC_PMNS, KC_BSPC,
+      _______, _______, _______, _______, _______, _______,                      KC_PSLS,   KC_P7,   KC_P8,   KC_P9, KC_PMNS, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_DEL, _______, _______, _______, _______, _______,                      KC_PAST,   KC_P4,   KC_P5,   KC_P6, KC_PPLS, _______,
+      _______, _______, _______, _______, _______, _______,                      KC_PAST,   KC_P4,   KC_P5,   KC_P6, KC_PPLS, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, _______, _______, _______, _______, _______,                       KC_EQL,   KC_P1,   KC_P2,   KC_P3, KC_PDOT, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______,   KC_P0, _______
+                                          _______, _______, _______,    _______,   KC_P0, KC_LNUM
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -71,29 +72,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
+       KC_DEL, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, _______,  KC_GRV, KC_MINS,  KC_EQL, _______,                      _______, KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______
+                                          KC_LCAP, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
   ),
 
   [NAV] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      QK_BOOT, _______, _______, _______, _______, _______,                      KC_HOME, _______,   KC_UP, _______, KC_PGUP, _______,
+        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, _______,                      KC_HOME, _______,   KC_UP, _______, KC_PGUP, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, _______, _______, _______, _______, _______,                       KC_END, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, _______,
+        KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, _______,                       KC_END, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, _______, _______, _______, _______, _______,                      _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______,
+       KC_F11,  KC_F12, _______, _______, _______, _______,                      _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______
+                                          _______, _______, QK_BOOT,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
   )
 };
 // clang-format on
 
 // Per key, per layer RGBs
+//
+// Build Guide:
+//   https://github.com/foostan/crkbd/blob/main/corne-classic/doc/buildguide_en.md
 //
 // LED indexing
 //   number: number on the build guide, 1-index
@@ -116,15 +120,12 @@ void render_base_layer_led(uint8_t led_min, uint8_t led_max) {
 }
 
 void render_num_layer_led(uint8_t led_min, uint8_t led_max) {
-  // Delete
-  rgb_matrix_set_color(25, RGB_WHITE);
-
   // Numpad
   for (uint8_t i = 37; i <= 40; i++) {
-    rgb_matrix_set_color(i, RGB_CROW);
+    rgb_matrix_set_color(i, RGB_CATHODE_GREEN);
   }
   for (uint8_t i = 42; i <= 47; i++) {
-    rgb_matrix_set_color(i, RGB_CROW);
+    rgb_matrix_set_color(i, RGB_CATHODE_GREEN);
   }
 
   // Symbols around numpad
@@ -134,6 +135,9 @@ void render_num_layer_led(uint8_t led_min, uint8_t led_max) {
   for (uint8_t i = 48; i <= 50; i++) {
     rgb_matrix_set_color(i, RGB_CROWSHEAD);
   }
+
+  // Num Lock
+  rgb_matrix_set_color(41, RGB_CROW);
 }
 
 void render_sym_layer_led(uint8_t led_min, uint8_t led_max) {
@@ -170,9 +174,23 @@ void render_sym_layer_led(uint8_t led_min, uint8_t led_max) {
   for (uint8_t i = 46; i <= 49; i++) {
     rgb_matrix_set_color(i, RGB_CROW);
   }
+
+  // Caps Lock
+  rgb_matrix_set_color(14, RGB_WHITE);
+
+  // Delete
+  rgb_matrix_set_color(25, RGB_WHITE);
 }
 
 void render_nav_layer_led(uint8_t led_min, uint8_t led_max) {
+  // Funtion keys
+  for (uint8_t i = 8; i <= 11; i++) {
+    rgb_matrix_set_color(i, RGB_CATHODE_GREEN);
+  }
+  for (uint8_t i = 16; i <= 23; i++) {
+    rgb_matrix_set_color(i, RGB_CATHODE_GREEN);
+  }
+
   // Nav
   rgb_matrix_set_color(35, RGB_CROW);
   rgb_matrix_set_color(36, RGB_CROW);
