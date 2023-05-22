@@ -14,14 +14,21 @@ Alternatively, `make crkbd:yesiah`
 
 The output will be at `~/qmk_firmware/crkbd_rev1_yesiah.hex`
 
+## Handedness
+
+I use [Handedness by EEPROM](https://docs.qmk.fm/#/feature_split_keyboard?id=handedness-by-eeprom).
+
 ## Flashing
 
-I use [Handedness by EEPROM](https://docs.qmk.fm/#/feature_split_keyboard?id=handedness-by-eeprom). Follow the guide to flash both sides of your keyboard.
+Use QMK Toolbox to flash both hands separately.
 
-Use QMK Toolbox to flash.
-
-Press the physical reset button on crkbd to reset.
+1. Open QMK Tookbox
+1. Plug in the left half of the keyboard
+1. Press the physical reset button twice to reset the keyboard
+1. Select Tool -> EEPROM -> Set Left Hand Side (or similar wording), and wait until finish
+1. Flash
+1. Do the same for the right half
 
 ## Layers
 
-TODＤ
+TODO
