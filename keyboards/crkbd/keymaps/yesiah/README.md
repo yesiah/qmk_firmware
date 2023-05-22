@@ -31,4 +31,4 @@ Use QMK Toolbox to flash both hands separately.
 
 ## Layers
 
-TODO
+TODO (maybe not)
